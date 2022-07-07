@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14.2-alpine
+    volumes:
+      - farfor_db:/var/lib/postgresql/data
+    env_file: .env
+    container_name: farfor-db
+    ports:
+      - "5433:5432"
+  redis:
+    image: redis:alpine
+    container_name: farfor-redis
+    volumes:
+      - ./storage/redis:/data
+  wkhtmltopdf:
+    image: openlabs/docker-wkhtmltopdf-aas
+    container_name: wkhtmltopdf
+    ports:
+      - "4000:80"
+volumes:
+  farfor_db:
