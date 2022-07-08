@@ -22,7 +22,7 @@
 * ```poetry run pyhon manage.py runserver 0.0.0.0:8000``` - запускаем сам проект
 * ```poetry run python manage.py rqworker default``` - запускаем воркер для обработки задачи django_rq
 
-Схема полностью соответствует https://editor.swagger.io/
+Схема полностью соответствует https://github.com/smenateam/assignments/blob/master/backend/api.yml
 
 ## Тесты
 
