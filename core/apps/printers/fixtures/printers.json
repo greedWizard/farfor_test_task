@@ -1,0 +1,22 @@
+[
+    {
+        "model": "printers.Printer",
+        "pk": 1,
+        "fields": {
+            "name": "Pantum 6500w",
+            "api_key": "71acf8b6-732a-4de3-ac05-d07c7130779d",
+            "check_type": "kitchen",
+            "point_id": 1
+        }
+    },
+    {
+        "model": "printers.Printer",
+        "pk": 2,
+        "fields": {
+            "name": "Pantum 6500w",
+            "api_key": "a6102b36-97f5-49d2-83ce-14377884f083",
+            "check_type": "client",
+            "point_id": 1
+        }
+    }
+]

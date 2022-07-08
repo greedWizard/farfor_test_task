@@ -2,7 +2,7 @@ from django.db.models import TextChoices
 
 
 class CheckTypeChoices(TextChoices):
-    KITCHEN = 'kichen', 'kitchen'
+    KITCHEN = 'kitchen', 'kitchen'
     CLIENT = 'client', 'client'
 
 

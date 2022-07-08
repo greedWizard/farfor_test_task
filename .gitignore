@@ -4,3 +4,5 @@ __pycache__/
 # Локальные настройки
 core/project/settings/local.py
 poetry.lock
+storage/*
+!storage/.gitkeep

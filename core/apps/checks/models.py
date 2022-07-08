@@ -1,6 +1,7 @@
 from django.db import models
 
 from core.apps.checks.constants import CheckStatus, CheckTypeChoices
+from core.apps.checks.managers import CheckManager
 
 
 class Check(models.Model):
@@ -25,3 +26,9 @@ class Check(models.Model):
         null=True,
         blank=True,
     )
+
+    objects: CheckManager = CheckManager()
+
+    class Meta:
+        verbose_name = 'Чек'
+        verbose_name_plural = 'Чеки'

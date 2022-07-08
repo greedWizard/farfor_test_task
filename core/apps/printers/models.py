@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 
 from core.apps.checks.constants import CheckTypeChoices
+from core.apps.printers.managers import PrinterManager
 
 
 class Printer(models.Model):
@@ -20,3 +21,13 @@ class Printer(models.Model):
         max_length=20,
     )
     point_id = models.IntegerField(verbose_name='точка к которой привязан принтер')
+
+    objects: PrinterManager = PrinterManager()
+
+    class Meta:
+        verbose_name = 'Принтер'
+        verbose_name_plural = 'Принтеры'
+        # constraints
+        unique_together = (
+            ('point_id', 'check_type'),
+        )
