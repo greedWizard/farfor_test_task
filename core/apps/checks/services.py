@@ -40,8 +40,8 @@ def create_checks(json_data: dict[str, Any]) -> list[Check]:
     )
 
     for check in checks:
-        # django_rq.enqueue(make_pdf, check=check)
-        django_rq.enqueue(make_pdf, check=check)
+        # django_rq.enqueue(make_check_pdf, check=check)
+        django_rq.enqueue(make_check_pdf, check=check)
     return checks
 
 
@@ -69,7 +69,7 @@ def render_check_template(check: Check) -> str:
     return ''
 
 
-def make_pdf(check: Check) -> Union[str, None]:
+def make_check_pdf(check: Check) -> Union[str, None]:
     '''
     Создать пдф файл для переданного чека.
     '''
@@ -93,4 +93,5 @@ def make_pdf(check: Check) -> Union[str, None]:
 
     with open(pdf_path, 'wb') as write_file:
         write_file.write(response.content)
+    Check.objects.attach_pdf_file(check_id=check.id, filepath=pdf_path)
     return pdf_path

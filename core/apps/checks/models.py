@@ -20,6 +20,7 @@ class Check(models.Model):
         verbose_name='статус чека',
         max_length=20,
         choices=CheckStatus.choices,
+        default=CheckStatus.NEW,
     )
     pdf_file = models.FileField(
         verbose_name='ссылка на созданный PDF-файл',

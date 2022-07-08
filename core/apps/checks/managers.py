@@ -1,10 +1,16 @@
 from typing import Any
 from django.db.models import Manager, Model
 
-from core.apps.checks.constants import CheckTypeChoices
+from core.apps.checks.constants import CheckStatus, CheckTypeChoices
 
 
 class CheckManager(Manager):
+    def attach_pdf_file(self, check_id: int, filepath: str):
+        '''
+        Прикрепить файл с отрендеренным чеком в формате pdf
+        '''
+        self.filter(id=check_id).update(status=CheckStatus.RENDERED, pdf_file=filepath)
+
     def create_both_checks(
         self,
         order: dict[str, Any],

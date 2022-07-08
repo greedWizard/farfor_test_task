@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from django.urls import reverse
-from core.apps.checks.constants import CheckTypeChoices
+from core.apps.checks.constants import CheckStatus, CheckTypeChoices
 
 from core.apps.checks.models import Check
 
@@ -48,10 +48,16 @@ class ChecksAPITestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.json())
         self.assertTrue(
-            Check.objects.filter(type=CheckTypeChoices.CLIENT),
+            Check.objects.filter(
+                type=CheckTypeChoices.CLIENT,
+                status=CheckStatus.NEW,
+            ),
             'чек для клиента не создался',
         )
         self.assertTrue(
-            Check.objects.filter(type=CheckTypeChoices.KITCHEN),
+            Check.objects.filter(
+                type=CheckTypeChoices.KITCHEN,
+                status=CheckStatus.NEW,
+            ),
             'чек для кухни не создался',
         )
