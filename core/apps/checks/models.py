@@ -30,6 +30,12 @@ class Check(models.Model):
 
     objects: CheckManager = CheckManager()
 
+    def __str__(self) -> str:
+        return f'Чек {self.type} {self.status}'
+
+    def __repr__(self) -> str:
+        return f'<Чек {self.type} {self.status}>'
+
     class Meta:
         verbose_name = 'Чек'
         verbose_name_plural = 'Чеки'

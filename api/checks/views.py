@@ -5,6 +5,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from api.checks.filters import CheckFilter
 from api.checks.serializers import CheckCreateSeriazlier, CheckListSerializer
+from core.apps.checks.constants import CheckStatus
 from core.apps.checks.models import Check
 
 
@@ -22,6 +23,8 @@ class ChecksAPIView(
         queryset = self.filter_queryset(self.get_queryset())
 
         check: Check = queryset.first()
+        check.status = CheckStatus.PRINTED
+        check.save()
 
         if not check:
             return HttpResponse(content=b'')

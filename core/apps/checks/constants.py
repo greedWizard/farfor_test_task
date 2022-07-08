@@ -2,11 +2,11 @@ from django.db.models import TextChoices
 
 
 class CheckTypeChoices(TextChoices):
-    KITCHEN = 'kitchen', 'kitchen'
-    CLIENT = 'client', 'client'
+    KITCHEN = 'kitchen', 'кухня'
+    CLIENT = 'client', 'клиент'
 
 
 class CheckStatus(TextChoices):
-    NEW = 'new', 'new'
-    RENDERED = 'rendered', 'rendered'
-    PRINTED = 'printed', 'printed'
+    NEW = 'new', 'новый'
+    RENDERED = 'rendered', 'готов к печати'
+    PRINTED = 'printed', 'напечатан'

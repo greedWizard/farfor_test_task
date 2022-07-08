@@ -151,5 +151,7 @@ RQ_QUEUES = {
 }
 
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
 PDF_PATH_ROOT = os.path.join(MEDIA_ROOT, 'pdf')
 WKHTMLTOPDF_URL = os.environ.get('WKHTMLTOPDF_URL')

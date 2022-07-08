@@ -24,6 +24,12 @@ class Printer(models.Model):
 
     objects: PrinterManager = PrinterManager()
 
+    def __str__(self) -> str:
+        return f'{self.name} {self.check_type}'
+
+    def __repr__(self) -> str:
+        return f'<{self.name} {self.check_type}>'
+
     class Meta:
         verbose_name = 'Принтер'
         verbose_name_plural = 'Принтеры'
