@@ -18,3 +18,10 @@ class CheckCreateSeriazlier(Serializer):
 
     class Meta:
         fields = '__all__'
+
+
+class CheckListSerializer(Serializer):
+    checks = serializers.ListField(child=serializers.IntegerField())
+
+    class Meta:
+        fields = '__all__'

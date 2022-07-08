@@ -1,10 +1,24 @@
 from typing import Any
-from django.db.models import Manager, Model
+from django.db.models import Manager, Model, QuerySet, Q
 
 from core.apps.checks.constants import CheckStatus, CheckTypeChoices
 
 
+class CheckQuerySet(QuerySet):
+    def avaliable_for_printing(self):
+        return self.filter(
+            Q(status=CheckStatus.RENDERED) | Q(status=CheckStatus.PRINTED),
+            pdf_file__isnull=False,
+        )
+
+
 class CheckManager(Manager):
+    def get_queryset(self) -> CheckQuerySet:
+        return CheckQuerySet(self.model, using=self._db)
+
+    def avaliable_for_printing(self):
+        return self.get_queryset().avaliable_for_printing()
+
     def attach_pdf_file(self, check_id: int, filepath: str):
         '''
         Прикрепить файл с отрендеренным чеком в формате pdf
