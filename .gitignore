@@ -6,3 +6,5 @@ core/project/settings/local.py
 poetry.lock
 storage/*
 !storage/.gitkeep
+media/*
+!media/pdf/.gitkeep

@@ -14,10 +14,27 @@ services:
     container_name: farfor-redis
     volumes:
       - ./storage/redis:/data
+    ports:
+      - 6379:6379
   wkhtmltopdf:
     image: openlabs/docker-wkhtmltopdf-aas
     container_name: wkhtmltopdf
     ports:
       - "4000:80"
+  rq_worker:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        STATIC_URL: "/static/"
+    restart: always
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/code
+    command: poetry run python manage.py rqworker default
+    env_file: .env
+    container_name: farfor-rq
 volumes:
   farfor_db:

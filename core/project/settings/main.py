@@ -9,15 +9,13 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
-from pathlib import Path
 from dotenv import load_dotenv
 import os
+from pathlib import Path
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-print(BASE_DIR)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -42,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_rq',
 
     'core.apps.printers',
     'core.apps.checks',
@@ -140,3 +139,16 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     ]
 }
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'DEFAULT_TIMEOUT': 360,
+    }
+}
+
+MEDIA_ROOT = BASE_DIR / 'media'
+PDF_PATH_ROOT = os.path.join(MEDIA_ROOT, 'pdf')
+WKHTMLTOPDF_URL = os.environ.get('WKHTMLTOPDF_URL')

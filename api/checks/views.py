@@ -19,6 +19,4 @@ class ChecksAPIView(
 
         if serializer.create_checks(serializer.validated_data):
             return Response(data={ 'ok': 'Чеки успешно созданы' })
-        raise Exception(123)
-
         return Response(data={ 'error': 'Не удалось создать чеки' })

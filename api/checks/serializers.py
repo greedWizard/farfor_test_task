@@ -11,6 +11,7 @@ class CheckCreateSeriazlier(Serializer):
     price = serializers.FloatField()
     client = serializers.JSONField()
     point_id = serializers.IntegerField()
+    address = serializers.CharField()
 
     def create_checks(self, validated_data):
         return create_checks(json_data=validated_data)
